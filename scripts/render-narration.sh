@@ -29,20 +29,15 @@ synthesize() {
       return 0
     fi
 
-    printf 'edge-tts attempt %d/%d failed; retrying narration scene\n' \
-      "$attempt" "$TTS_ATTEMPTS" >&2
+    printf 'edge-tts attempt %d/%d failed%s\n' \
+      "$attempt" "$TTS_ATTEMPTS" \
+      "$([[ $attempt -lt $TTS_ATTEMPTS ]] && printf '; retrying narration scene')" >&2
     (( attempt < TTS_ATTEMPTS )) && sleep $((attempt * 2))
   done
 
-  if ! command -v espeak-ng >/dev/null 2>&1; then
-    printf 'edge-tts failed and espeak-ng is unavailable; cannot render narration\n' >&2
-    return 1
-  fi
-
-  printf 'edge-tts did not return audio; using the offline espeak-ng fallback\n' >&2
-  rm -f "$destination"
-  espeak-ng -v en-us -s 185 -w "$destination" -- "$text"
-  [[ -s "$destination" ]]
+  printf 'edge-tts could not synthesize narration with %s after %d attempts\n' \
+    "$VOICE" "$TTS_ATTEMPTS" >&2
+  return 1
 }
 
 scene_count="$(jq '.scenes | length' "$ROOT/data/story.json")"
