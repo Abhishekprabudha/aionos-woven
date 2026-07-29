@@ -62,6 +62,17 @@
         <div id="chapterTicks" class="chapter-ticks"></div>
       </div>
       <div class="settings">
+        <label class="speed-control" for="speedSelect">
+          <span>Speed</span>
+          <select id="speedSelect" aria-label="Playback speed">
+            <option value="0.5">0.5×</option>
+            <option value="0.75">0.75×</option>
+            <option value="1" selected>1×</option>
+            <option value="1.25">1.25×</option>
+            <option value="1.5">1.5×</option>
+            <option value="2">2×</option>
+          </select>
+        </label>
         <label class="switch"><input id="narrationToggle" type="checkbox" checked /><span></span><em>Narration</em></label>
         <label class="switch"><input id="captionToggle" type="checkbox" checked /><span></span><em>Captions</em></label>
         <select id="voiceSelect" aria-label="Narration voice"><option>System voice</option></select>
