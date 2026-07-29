@@ -1,0 +1,172 @@
+{
+  "title": "Many Agents. One Governed Fabric.",
+  "subtitle": "How AIONOS interfaces with Woven's cutting-edge mobility ecosystem to govern agents, data, experience and scale.",
+  "targetDurationSeconds": 295,
+  "scenes": [
+    {
+      "id": "opening",
+      "type": "cover",
+      "duration": 9,
+      "chapter": "AIONOS × WOVEN",
+      "title": "Many agents. One governed fabric.",
+      "kicker": "AI-native operations for frontier mobility",
+      "narration": "At Woven, innovation moves through vehicles, cities, people and infrastructure. AIONOS turns that frontier into one governed, learning operating system.",
+      "outcomes": ["Governed innovation", "Connected intelligence", "Continuous learning"],
+      "activeAgents": []
+    },
+    {
+      "id": "hr-ground-ops",
+      "video": "assets/media/01_hr-ground-ops.mp4",
+      "duration": 8.37,
+      "chapter": "THE AGENT ENSEMBLE",
+      "title": "HR Ground Ops",
+      "kicker": "Workforce readiness at the point of operation",
+      "narration": "The ensemble begins with HR Ground Ops—an agent that coordinates workforce readiness, exceptions and decisions where physical operations actually happen.",
+      "outcomes": ["Ready workforce", "Faster exception handling", "Operational continuity"],
+      "activeAgents": ["HR Ground Ops"]
+    },
+    {
+      "id": "last-mile",
+      "video": "assets/media/02_last-mile.mp4",
+      "duration": 10.73,
+      "chapter": "THE AGENT ENSEMBLE",
+      "title": "Last Mile Best Practices",
+      "kicker": "Every handoff becomes a learning signal",
+      "narration": "Last Mile Best Practices studies every delivery handoff, identifies friction, and recommends the next operational action before delays become customer problems.",
+      "outcomes": ["Lower delivery friction", "Proactive intervention", "Better service levels"],
+      "activeAgents": ["Last Mile"]
+    },
+    {
+      "id": "traffic-control",
+      "video": "assets/media/03_traffic-control.mp4",
+      "duration": 8.53,
+      "chapter": "THE AGENT ENSEMBLE",
+      "title": "NX Hero Traffic Control",
+      "kicker": "See movement. Predict disruption. Act early.",
+      "narration": "NX Hero reads live traffic conditions and helps control movement across a city that never stops learning.",
+      "outcomes": ["Traffic visibility", "Early disruption detection", "Safer flow"],
+      "activeAgents": ["NX Hero"]
+    },
+    {
+      "id": "procurement",
+      "video": "assets/media/04_procurement.mp4",
+      "duration": 11.7,
+      "chapter": "THE AGENT ENSEMBLE",
+      "title": "Procurement Control Tower",
+      "kicker": "Signals become defensible sourcing decisions",
+      "narration": "The Procurement Control Tower watches demand, suppliers, contracts and risk—turning fragmented signals into faster, defensible sourcing decisions.",
+      "outcomes": ["Supplier intelligence", "Risk-aware buying", "Cost control"],
+      "activeAgents": ["Procurement"]
+    },
+    {
+      "id": "unifleet",
+      "video": "assets/media/05_unifleet.mp4",
+      "duration": 9.3,
+      "chapter": "THE AGENT ENSEMBLE",
+      "title": "UniFleet Autonomous Fleet Management",
+      "kicker": "Mission, safety and utilization in one view",
+      "narration": "UniFleet supervises autonomous and human-operated fleets, balancing availability, safety, utilization and mission priorities in real time.",
+      "outcomes": ["Fleet availability", "Mission orchestration", "Utilization intelligence"],
+      "activeAgents": ["UniFleet"]
+    },
+    {
+      "id": "warehouse-vision",
+      "video": "assets/media/06_warehouse-vision.mp4",
+      "duration": 8.47,
+      "chapter": "THE AGENT ENSEMBLE",
+      "title": "Warehouse Vision",
+      "kicker": "Physical operations become machine-readable",
+      "narration": "Warehouse Vision sees inventory, movement and anomalies continuously—converting cameras and events into precise operational intelligence.",
+      "outcomes": ["Inventory accuracy", "Visual anomaly detection", "Flow intelligence"],
+      "activeAgents": ["Warehouse Vision"]
+    },
+    {
+      "id": "driver-dashcam",
+      "video": "assets/media/07_driver-dashcam.mp4",
+      "duration": 8.73,
+      "chapter": "THE AGENT ENSEMBLE",
+      "title": "Driver Dashcam Intelligence",
+      "kicker": "Every journey becomes explainable evidence",
+      "narration": "Driver Dashcam transforms every journey into evidence: detecting risk, explaining events, and improving safety across the fleet.",
+      "outcomes": ["Risk detection", "Event explainability", "Safer driving"],
+      "activeAgents": ["Dashcam Intelligence"]
+    },
+    {
+      "id": "unistack-one",
+      "video": "assets/media/08_unistack-1.mp4",
+      "duration": 47.63,
+      "chapter": "UNISTACK",
+      "title": "From impressive agents to an accountable enterprise",
+      "kicker": "Agent OPS + Data OPS + governance",
+      "narration": "Different agents, different data, different operating contexts—yet one control plane. UniStack registers each agent, maps its tools and permissions, and connects it to governed data products. Every signal carries lineage. Every decision has policy. Every exception has an owner. Operators can observe performance, approve high-impact actions, investigate failures and replay the evidence behind a recommendation. Data is standardized across vehicle, city, partner and enterprise sources. Models and prompts are versioned. Human approvals are inserted exactly where risk demands them. This is how AIONOS moves from a collection of impressive agents to an accountable agentic enterprise—where data is reliable enough for autonomy, and autonomy is accountable enough for Woven.",
+      "outcomes": ["Agent registry", "Data lineage", "Policy guardrails", "Human approvals", "Audit evidence"],
+      "activeAgents": ["HR Ground Ops", "Last Mile", "NX Hero", "Procurement", "UniFleet", "Warehouse Vision", "Dashcam Intelligence"]
+    },
+    {
+      "id": "uniscale",
+      "video": "assets/media/09_uniscale.mp4",
+      "duration": 37.9,
+      "chapter": "UNISCALE",
+      "title": "Market visibility becomes an autonomous operating loop",
+      "kicker": "Right story. Right audience. Right time.",
+      "narration": "Then UniScale turns operational evidence into market intelligence. It listens to customer, partner, media and ecosystem signals; measures narrative momentum, share of voice and brand health; and recommends the right story, audience, channel and timing. Every claim is linked to proof, approval and attribution. Communications teams can see which innovation themes are gaining trust, which audiences need evidence, and which messages require escalation. Woven's innovations are no longer communicated as isolated experiments. They become a compounding narrative of outcomes—visible to partners, trusted by stakeholders and measurable by leadership.",
+      "outcomes": ["Brand intelligence", "Next-best communication", "Compliant claims", "Measurable visibility"],
+      "activeAgents": ["Signal Agent", "Narrative Agent", "Audience Agent", "Brand Score Agent"]
+    },
+    {
+      "id": "uniweave",
+      "video": "assets/media/10_uniweave-self-driving.mp4",
+      "duration": 35,
+      "chapter": "UNIWEAVE",
+      "title": "Customer experience remains the center of the system",
+      "kicker": "Intent to resolution across autonomous mobility",
+      "narration": "UniWeave brings the entire system back to the person. A self-driving journey is not only a vehicle event; it is a connected experience spanning intent, weather, traffic, preferences, services and trust. UniWeave understands the context, orchestrates the right agents and systems, explains what changed, and keeps the customer in control. It remembers preferences only with consent, routes requests to people when empathy or authority is required, and converts every interaction into evidence for improvement. The result is mobility that feels personal, proactive and seamless—even when the world around it changes.",
+      "outcomes": ["Personalized journey", "Conversational resolution", "Consent-aware memory", "Closed-loop CX"],
+      "activeAgents": ["Journey Agent", "Mobility Agent", "Service Agent", "Experience Memory"]
+    },
+    {
+      "id": "video-annotation",
+      "video": "assets/media/11_video-annotation.mp4",
+      "duration": 17.97,
+      "chapter": "MATHEMATICAL INTELLIGENCE",
+      "title": "Video annotation builds the visual reasoning layer",
+      "kicker": "Objects, events, behaviour and risk become structured truth",
+      "narration": "Behind every capable vision agent is rigorous annotation. AIONOS turns complex video into structured events, grounded objects, behaviours and risk labels—the mathematical foundation for agents that can see, reason and improve. Quality controls, disagreement analysis and hard-example review ensure that the agent learns from evidence rather than assumption.",
+      "outcomes": ["Grounded perception", "Risk taxonomies", "Training quality", "Explainable labels"],
+      "activeAgents": ["Vision Annotation", "Quality Reviewer"]
+    },
+    {
+      "id": "audio-annotation",
+      "video": "assets/media/12_audio-annotation.mp4",
+      "duration": 17.37,
+      "chapter": "MATHEMATICAL INTELLIGENCE",
+      "title": "Audio annotation adds intent, context and acoustic intelligence",
+      "kicker": "Human expertise becomes reliable machine logic",
+      "narration": "Audio annotation adds another dimension: intent, emotion, events, context and acoustic patterns. Human expertise and mathematical logic convert raw sound into reliable intelligence that agents can act upon. The same governed workflow manages label definitions, reviewer confidence, model feedback and continuous improvement.",
+      "outcomes": ["Intent detection", "Acoustic events", "Human validation", "Model feedback"],
+      "activeAgents": ["Audio Annotation", "Ontology Manager"]
+    },
+    {
+      "id": "unistack-two",
+      "video": "assets/media/13_unistack-2.mp4",
+      "duration": 40.07,
+      "chapter": "THE WOVEN INTERFACE",
+      "title": "One interface for frontier technology and autonomous systems",
+      "kicker": "Agent management to no-code orchestration",
+      "narration": "Finally, UniStack closes the loop. Agent management, data operations, annotation logic, governance and no-code orchestration converge in one interface. New models, applications and autonomous systems can be connected without losing control. Policies travel with the data. Evidence travels with the decision. Outcomes return as feedback for the next iteration. Teams can assemble workflows visually, change approval thresholds, connect new tools and monitor impact without rebuilding the operating layer. This is the bridge to Woven: AIONOS can interface with the most advanced mobility technologies while making them observable, governable, resilient and ready to scale.",
+      "outcomes": ["No-code orchestration", "Frontier model integration", "Resilient operations", "Scale readiness"],
+      "activeAgents": ["All agents", "Data products", "Policy engine", "No-code workflows"]
+    },
+    {
+      "id": "closing",
+      "type": "cover",
+      "duration": 14,
+      "chapter": "AIONOS × WOVEN",
+      "title": "Many agents. One fabric. Business outcomes at scale.",
+      "kicker": "Govern the frontier without slowing it down",
+      "narration": "Woven creates the future mobility testbed. AIONOS makes the innovation operable, trusted and repeatable. Many agents. One fabric. Business outcomes at scale.",
+      "outcomes": ["Operate", "Govern", "Learn", "Scale"],
+      "activeAgents": ["AIONOS Agent Fabric"]
+    }
+  ]
+}
