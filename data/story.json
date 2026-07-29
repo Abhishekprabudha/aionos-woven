@@ -120,7 +120,7 @@
       "chapter": "UNIWEAVE",
       "title": "Customer experience remains the center of the system",
       "kicker": "Intent to resolution across autonomous mobility",
-      "narration": "UniWeave brings the entire system back to the person. A self-driving journey is not only a vehicle event; it is a connected experience spanning intent, weather, traffic, preferences, services and trust. UniWeave understands the context, orchestrates the right agents and systems, explains what changed, and keeps the customer in control. It remembers preferences only with consent, routes requests to people when empathy or authority is required, and converts every interaction into evidence for improvement. The result is mobility that feels personal, proactive and seamless—even when the world around it changes.",
+      "narration": "UniWeave brings the entire system back to the person. A self-driving journey is not only a vehicle event; it is a connected experience spanning intent, weather, traffic, preferences, services and trust. UniWeave understands the context, orchestrates the right agents and systems, explains what changed, and keeps the customer in control. It remembers preferences only with consent, routes requests to people when empathy or authority is required, and converts every interaction into evidence for improvement. The result is mobility that feels personal and proactive.",
       "outcomes": ["Personalized journey", "Conversational resolution", "Consent-aware memory", "Closed-loop CX"],
       "activeAgents": ["Journey Agent", "Mobility Agent", "Service Agent", "Experience Memory"]
     },
