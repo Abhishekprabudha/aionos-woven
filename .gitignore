@@ -1,0 +1,4 @@
+.DS_Store
+Thumbs.db
+exports/*.mp4
+!exports/.gitkeep

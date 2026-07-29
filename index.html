@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#06152f" />
+  <title>AIONOS × Woven — Many Agents. One Governed Fabric.</title>
+  <meta name="description" content="A cinematic five-minute demonstration of how AIONOS governs and scales an ensemble of cutting-edge agents for the Woven mobility ecosystem." />
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app" id="app">
+    <div class="ambient-grid" aria-hidden="true"></div>
+    <header class="topbar">
+      <div class="brand-lockup" aria-label="AIONOS and Woven collaboration">
+        <span class="brand brand-woven"><i></i>WOVEN <small>BY TOYOTA</small></span>
+        <span class="brand-x">×</span>
+        <span class="brand brand-aionos">AI<span>on</span>OS</span>
+      </div>
+      <div class="top-status">
+        <span class="live-dot"></span>
+        <span id="chapterLabel">READY</span>
+        <span class="scene-counter" id="sceneCounter">00 / 15</span>
+      </div>
+    </header>
+
+    <section class="film-stage" id="filmStage" aria-label="AIONOS Woven cinematic demonstration">
+      <video id="film" muted playsinline preload="metadata"></video>
+      <img id="coverArt" src="assets/img/ai-collaboration-hub.webp" alt="AI collaboration hub connecting people, data, governance and mobility systems" />
+      <div class="video-vignette" aria-hidden="true"></div>
+      <div class="scanlines" aria-hidden="true"></div>
+
+      <div class="title-overlay" id="titleOverlay">
+        <p class="eyebrow" id="sceneChapter">AIONOS × WOVEN</p>
+        <h1 id="sceneTitle">Many agents. One governed fabric.</h1>
+        <p class="kicker" id="sceneKicker">AI-native operations for frontier mobility</p>
+      </div>
+
+      <aside class="agent-console" aria-label="AIONOS agent management interface">
+        <div class="console-head">
+          <div>
+            <span class="console-kicker">AIONOS CONTROL PLANE</span>
+            <strong>Agent Mesh</strong>
+          </div>
+          <span class="health"><i></i> Governed</span>
+        </div>
+        <div id="agentGrid" class="agent-grid"></div>
+        <div class="governance-grid">
+          <div><span>IDENTITY</span><b id="identityState">Verified</b></div>
+          <div><span>DATA</span><b id="dataState">Lineage on</b></div>
+          <div><span>POLICY</span><b id="policyState">Enforced</b></div>
+          <div><span>EVIDENCE</span><b id="evidenceState">Streaming</b></div>
+        </div>
+      </aside>
+
+      <div class="outcome-rail" id="outcomeRail" aria-label="Business outcome indicators"></div>
+
+      <div class="narration-panel" id="narrationPanel">
+        <div class="narrator-mark">VO</div>
+        <p id="captionText">Press play to begin the five-minute cinematic experience.</p>
+      </div>
+
+      <button class="start-card" id="startCard" type="button">
+        <span class="start-orbit" aria-hidden="true"></span>
+        <span class="play-symbol">▶</span>
+        <strong>Launch the 5-minute agent film</strong>
+        <small>Best experienced with sound and full screen</small>
+      </button>
+    </section>
+
+    <section class="control-deck" aria-label="Film controls">
+      <div class="transport">
+        <button id="restartBtn" type="button" title="Restart">↺</button>
+        <button id="playBtn" class="primary" type="button" title="Play or pause">▶</button>
+        <button id="nextBtn" type="button" title="Next chapter">›</button>
+      </div>
+      <div class="timeline-wrap">
+        <div class="time-row"><span id="elapsed">00:00</span><span id="remaining">-04:36</span></div>
+        <input id="timeline" type="range" min="0" max="1000" value="0" aria-label="Film progress" />
+        <div id="chapterTicks" class="chapter-ticks"></div>
+      </div>
+      <div class="settings">
+        <label class="switch"><input id="narrationToggle" type="checkbox" checked /><span></span><em>Narration</em></label>
+        <label class="switch"><input id="captionToggle" type="checkbox" checked /><span></span><em>Captions</em></label>
+        <select id="voiceSelect" aria-label="Narration voice"><option>System voice</option></select>
+        <button id="fullscreenBtn" type="button" title="Full screen">⛶</button>
+      </div>
+    </section>
+
+    <section class="chapter-browser" id="chapterBrowser" aria-label="Story chapters"></section>
+  </main>
+  <script src="app.js" defer></script>
+</body>
+</html>
