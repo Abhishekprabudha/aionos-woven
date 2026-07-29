@@ -1,0 +1,73 @@
+name: Render narrated film
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - index.html
+      - styles.css
+      - app.js
+      - data/story.json
+      - assets/**
+      - scripts/capture-page.py
+      - scripts/render-narration.sh
+      - .github/workflows/render-film.yml
+
+permissions:
+  contents: read
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install browser dependencies
+        run: |
+          python -m pip install edge-tts playwright
+          python -m playwright install --with-deps chromium
+
+      - name: Build US English Mark narration
+        id: narration
+        run: echo "file=$(scripts/render-narration.sh)" >> "$GITHUB_OUTPUT"
+
+      - name: Start the web app
+        run: |
+          python -m http.server 8080 --bind 127.0.0.1 > /tmp/aionos-server.log 2>&1 &
+          echo $! > /tmp/aionos-server.pid
+          for attempt in {1..30}; do
+            curl --fail --silent http://127.0.0.1:8080/data/story.json >/dev/null && exit 0
+            sleep 1
+          done
+          exit 1
+
+      - name: Capture the playing page
+        run: |
+          duration=$(jq '[.scenes[].duration] | add + 2 | ceil' data/story.json)
+          mkdir -p exports
+          xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" bash -euo pipefail -c '
+            ffmpeg -hide_banner -loglevel warning -y \
+              -f x11grab -framerate 30 -video_size 1920x1080 -i "$DISPLAY" \
+              -t '"$duration"' -c:v libx264 -preset veryfast -crf 18 -pix_fmt yuv420p \
+              exports/page-silent.mp4 &
+            recorder=$!
+            python scripts/capture-page.py
+            wait "$recorder"
+          '
+
+      - name: Mix narration and create MP4
+        run: |
+          ffmpeg -hide_banner -loglevel warning -y \
+            -i exports/page-silent.mp4 -i "${{ steps.narration.outputs.file }}" \
+            -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 192k -shortest \
+            -movflags +faststart exports/AIONOS_Woven_narrated.mp4
+
+      - name: Upload rendered film
+        uses: actions/upload-artifact@v4
+        with:
+          name: AIONOS-Woven-narrated-film
+          path: exports/AIONOS_Woven_narrated.mp4
+          if-no-files-found: error
+          retention-days: 14
