@@ -60,7 +60,7 @@ The video assets in this repository were supplied for this demonstration. Confir
 
 ## Render a narrated MP4 with GitHub Actions
 
-The **Render narrated film** workflow captures the page at 1920×1080 while it plays, generates scene-aligned narration with Microsoft Edge TTS's US English `en-US-MarkNeural` voice, and mixes both into an H.264/AAC MP4.
+The **Render narrated film** workflow first generates and validates scene-aligned narration with Microsoft Edge TTS's US English `en-US-MarkNeural` voice. The render job starts only after that narration job succeeds, then captures the page at 1920×1080 and mixes the generated narration into an H.264/AAC MP4. The workflow fails rather than substituting a different voice if Mark is unavailable.
 
 1. Open the repository's **Actions** tab.
 2. Select **Render narrated film**.
