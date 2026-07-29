@@ -21,7 +21,7 @@
       "chapter": "THE AGENT ENSEMBLE",
       "title": "HR Ground Ops",
       "kicker": "Workforce readiness at the point of operation",
-      "narration": "The ensemble begins with HR Ground Ops—an agent that coordinates workforce readiness, exceptions and decisions where physical operations actually happen.",
+      "narration": "Diverse agents managed like HR Ground Ops—an agent that coordinates workforce readiness, exceptions and decisions where physical operations actually happen.",
       "outcomes": ["Ready workforce", "Faster exception handling", "Operational continuity"],
       "activeAgents": ["HR Ground Ops"]
     },
@@ -131,7 +131,7 @@
       "chapter": "MATHEMATICAL INTELLIGENCE",
       "title": "Video annotation builds the visual reasoning layer",
       "kicker": "Objects, events, behaviour and risk become structured truth",
-      "narration": "Behind every capable vision agent is rigorous annotation. AIONOS turns complex video into structured events, grounded objects, behaviours and risk labels—the mathematical foundation for agents that can see, reason and improve. Quality controls, disagreement analysis and hard-example review ensure that the agent learns from evidence rather than assumption.",
+      "narration": "Behind every capable vision agent is rigorous annotation. AIONOS turns complex video into structured events, grounded objects, behaviours and risk labels—the mathematical foundation for agents that can see, reason and improve. Quality controls, disagreement analysis.",
       "outcomes": ["Grounded perception", "Risk taxonomies", "Training quality", "Explainable labels"],
       "activeAgents": ["Vision Annotation", "Quality Reviewer"]
     },
@@ -142,7 +142,7 @@
       "chapter": "MATHEMATICAL INTELLIGENCE",
       "title": "Audio annotation adds intent, context and acoustic intelligence",
       "kicker": "Human expertise becomes reliable machine logic",
-      "narration": "Audio annotation adds another dimension: intent, emotion, events, context and acoustic patterns. Human expertise and mathematical logic convert raw sound into reliable intelligence that agents can act upon. The same governed workflow manages label definitions, reviewer confidence, model feedback and continuous improvement.",
+      "narration": "Audio annotation adds another dimension: intent, emotion, events, context and acoustic patterns. Human expertise and mathematical logic convert raw sound into reliable intelligence that agents can act upon. The same governed workflow manages label definitions, reviewer confidence, model feedback.",
       "outcomes": ["Intent detection", "Acoustic events", "Human validation", "Model feedback"],
       "activeAgents": ["Audio Annotation", "Ontology Manager"]
     },
@@ -153,7 +153,7 @@
       "chapter": "THE WOVEN INTERFACE",
       "title": "One interface for frontier technology and autonomous systems",
       "kicker": "Agent management to no-code orchestration",
-      "narration": "Finally, UniStack closes the loop. Agent management, data operations, annotation logic, governance and no-code orchestration converge in one interface. New models, applications and autonomous systems can be connected without losing control. Policies travel with the data. Evidence travels with the decision. Outcomes return as feedback for the next iteration. Teams can assemble workflows visually, change approval thresholds, connect new tools and monitor impact without rebuilding the operating layer. This is the bridge to Woven: AIONOS can interface with the most advanced mobility technologies while making them observable, governable, resilient and ready to scale.",
+      "narration": "Finally, UniStack closes the loop. Agent management, data operations, annotation logic, governance and no-code orchestration converge in one interface. New models, applications and autonomous systems can be connected without losing control. Policies travel with the data. Evidence travels with the decision. Outcomes return as feedback for the next iteration. Teams can assemble workflows visually, change approval thresholds, connect new tools and monitor impact without rebuilding the operating layer. This is the bridge to Woven: AIONOS can interface with the most advanced mobility technologies.",
       "outcomes": ["No-code orchestration", "Frontier model integration", "Resilient operations", "Scale readiness"],
       "activeAgents": ["All agents", "Data products", "Policy engine", "No-code workflows"]
     },
