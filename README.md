@@ -45,6 +45,7 @@ For a final production film, record the script in `narration/voiceover-script.md
 - **Home** — restart
 - Use the toggles for narration and captions.
 - Use the voice selector to choose the strongest available voice.
+- Use the speed selector to play the film and narration from 0.5× to 2× speed.
 
 ## Editing the story
 

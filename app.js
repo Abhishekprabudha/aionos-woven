@@ -9,17 +9,28 @@
     caption: document.getElementById('captionText'), counter: document.getElementById('sceneCounter'),
     chapterLabel: document.getElementById('chapterLabel'), browser: document.getElementById('chapterBrowser'),
     narrationToggle: document.getElementById('narrationToggle'), captionToggle: document.getElementById('captionToggle'),
-    voice: document.getElementById('voiceSelect'), fullscreen: document.getElementById('fullscreenBtn'),
+    voice: document.getElementById('voiceSelect'), speed: document.getElementById('speedSelect'),
+    fullscreen: document.getElementById('fullscreenBtn'),
     stage: document.getElementById('filmStage'), narrationPanel: document.getElementById('narrationPanel'),
     ticks: document.getElementById('chapterTicks')
   };
 
   let story, scenes, index = 0, playing = false, sceneStart = 0, sceneTimer = null;
-  let elapsedBeforeScene = 0, voices = [], chosenVoice = null;
+  let elapsedBeforeScene = 0, sceneElapsed = 0, playbackRate = 1, voices = [], chosenVoice = null;
   const pad = n => String(n).padStart(2,'0');
   const fmt = s => `${pad(Math.floor(s/60))}:${pad(Math.floor(s%60))}`;
   const durationTo = i => scenes.slice(0,i).reduce((a,s)=>a+s.duration,0);
   const totalDuration = () => scenes.reduce((a,s)=>a+s.duration,0);
+  const currentSceneElapsed = () => Math.min(
+    scenes[index].duration,
+    sceneElapsed + (playing ? (performance.now() - sceneStart) / 1000 * playbackRate : 0)
+  );
+
+  function scheduleAdvance(){
+    clearTimeout(sceneTimer);
+    const remaining = Math.max(0, scenes[index].duration - currentSceneElapsed());
+    sceneTimer = setTimeout(advance, remaining / playbackRate * 1000);
+  }
 
   async function init(){
     story = await fetch('data/story.json').then(r=>r.json());
@@ -47,7 +58,7 @@
   function showScene(i, autoPlay = playing){
     clearTimeout(sceneTimer); speechSynthesis.cancel();
     index = Math.max(0, Math.min(i, scenes.length-1));
-    const s = scenes[index]; elapsedBeforeScene = durationTo(index); sceneStart = performance.now();
+    const s = scenes[index]; elapsedBeforeScene = durationTo(index); sceneElapsed = 0; sceneStart = performance.now();
     ui.chapter.textContent = s.chapter; ui.chapterLabel.textContent = s.chapter;
     ui.title.textContent = s.title; ui.kicker.textContent = s.kicker; ui.caption.textContent = s.narration;
     ui.counter.textContent = `${pad(index+1)} / ${pad(scenes.length)}`;
@@ -65,39 +76,37 @@
 
   function playCurrent(){
     playing = true; ui.start.classList.add('is-hidden'); updatePlayButton();
-    const s = scenes[index]; sceneStart = performance.now();
-    if(s.video) ui.video.play().catch(()=>{});
+    const s = scenes[index]; sceneElapsed = 0; sceneStart = performance.now();
+    if(s.video){ ui.video.playbackRate = playbackRate; ui.video.play().catch(()=>{}); }
     speak(s.narration);
-    sceneTimer = setTimeout(()=>advance(), s.duration*1000);
+    scheduleAdvance();
   }
 
   function pause(){
-    playing = false; ui.video.pause(); speechSynthesis.pause(); clearTimeout(sceneTimer); updatePlayButton();
+    sceneElapsed = currentSceneElapsed(); playing = false; ui.video.pause(); speechSynthesis.pause(); clearTimeout(sceneTimer); updatePlayButton();
   }
   function resume(){
-    playing = true; ui.video.play().catch(()=>{}); speechSynthesis.resume();
-    const s=scenes[index]; const remaining=Math.max(500,(s.duration-ui.video.currentTime)*1000);
-    sceneTimer=setTimeout(()=>advance(),remaining); updatePlayButton();
+    playing = true; sceneStart = performance.now(); ui.video.playbackRate = playbackRate;
+    ui.video.play().catch(()=>{}); speechSynthesis.resume(); scheduleAdvance(); updatePlayButton();
   }
   function toggle(){ playing ? pause() : (ui.video.currentTime>0 ? resume() : playCurrent()); }
   function advance(){
-    if(index < scenes.length-1) showScene(index+1,true); else { playing=false; updatePlayButton(); }
+    if(index < scenes.length-1) showScene(index+1,true); else { sceneElapsed = scenes[index].duration; playing=false; updatePlayButton(); }
   }
-  function jumpTo(i){ showScene(i,playing); if(playing) playCurrent(); }
+  function jumpTo(i){ const wasPlaying = playing; showScene(i,false); if(wasPlaying) playCurrent(); }
   function restart(){ showScene(0,true); }
 
   function speak(text){
     if(!ui.narrationToggle.checked || !('speechSynthesis' in window)) return;
     speechSynthesis.cancel();
     const u = new SpeechSynthesisUtterance(text);
-    u.voice = chosenVoice; u.rate = 1.06; u.pitch = 0.96; u.volume = 1;
+    u.voice = chosenVoice; u.rate = Math.min(2, 1.06 * playbackRate); u.pitch = 0.96; u.volume = 1;
     speechSynthesis.speak(u);
   }
   function updatePlayButton(){ ui.play.textContent = playing ? 'Ⅱ' : '▶'; }
 
   function updateClock(){
-    const sceneElapsed = playing ? Math.min(scenes[index].duration,(performance.now()-sceneStart)/1000) : (ui.video.currentTime||0);
-    const absolute = Math.min(totalDuration(),elapsedBeforeScene+sceneElapsed);
+    const absolute = Math.min(totalDuration(),elapsedBeforeScene+currentSceneElapsed());
     ui.timeline.value = Math.round(absolute/totalDuration()*1000);
     ui.elapsed.textContent = fmt(absolute); ui.remaining.textContent = `-${fmt(totalDuration()-absolute)}`;
     requestAnimationFrame(updateClock);
@@ -106,13 +115,18 @@
   ui.start.addEventListener('click',()=>playCurrent()); ui.play.addEventListener('click',toggle);
   ui.restart.addEventListener('click',restart); ui.next.addEventListener('click',advance);
   ui.voice.addEventListener('change',()=>{ chosenVoice=voices[+ui.voice.value]||voices[0]; });
+  ui.speed.addEventListener('change',()=>{
+    sceneElapsed = currentSceneElapsed(); playbackRate = +ui.speed.value; sceneStart = performance.now();
+    ui.video.playbackRate = playbackRate;
+    if(playing){ scheduleAdvance(); if(ui.narrationToggle.checked) speak(scenes[index].narration); }
+  });
   ui.captionToggle.addEventListener('change',()=>ui.narrationPanel.style.opacity=ui.captionToggle.checked?'1':'0');
   ui.narrationToggle.addEventListener('change',()=>{ if(!ui.narrationToggle.checked) speechSynthesis.cancel(); else if(playing) speak(scenes[index].narration); });
   ui.fullscreen.addEventListener('click',()=>ui.stage.requestFullscreen?.());
   ui.timeline.addEventListener('change',()=>{
     const target=(+ui.timeline.value/1000)*totalDuration(); let acc=0,i=0;
     for(;i<scenes.length;i++){ if(target<acc+scenes[i].duration) break; acc+=scenes[i].duration; }
-    showScene(Math.min(i,scenes.length-1),playing); if(playing) playCurrent();
+    const wasPlaying = playing; showScene(Math.min(i,scenes.length-1),false); if(wasPlaying) playCurrent();
   });
   document.addEventListener('keydown',e=>{ if(e.code==='Space'){e.preventDefault();toggle();} if(e.key==='ArrowRight')advance(); if(e.key==='Home')restart(); });
   init().catch(err=>{ ui.caption.textContent='Unable to load the story configuration. Run through a local web server or GitHub Pages.'; console.error(err); });
