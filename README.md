@@ -57,3 +57,14 @@ The original long-form recordings were transformed into accelerated, web-optimiz
 ## Rights and distribution
 
 The video assets in this repository were supplied for this demonstration. Confirm that you have the necessary rights and permissions before publishing the repository or making it publicly accessible.
+
+## Render a narrated MP4 with GitHub Actions
+
+The **Render narrated film** workflow captures the page at 1920×1080 while it plays, generates scene-aligned narration with Microsoft Edge TTS's US English `en-US-MarkNeural` voice, and mixes both into an H.264/AAC MP4.
+
+1. Open the repository's **Actions** tab.
+2. Select **Render narrated film**.
+3. Choose **Run workflow**.
+4. When the job finishes, download the **AIONOS-Woven-narrated-film** artifact.
+
+The workflow also runs after relevant page, story, media, or rendering files are pushed to `main`. Rendered artifacts are retained for 14 days. The MP4 itself is intentionally excluded from Git because it is a generated export.
