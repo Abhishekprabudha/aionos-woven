@@ -27,7 +27,8 @@ jobs:
       - name: Install video encoder
         run: |
           sudo apt-get update
-          sudo apt-get install --yes ffmpeg
+          # espeak-ng is an offline fallback for transient Edge TTS failures.
+          sudo apt-get install --yes ffmpeg espeak-ng
 
       - name: Install browser dependencies
         run: |
