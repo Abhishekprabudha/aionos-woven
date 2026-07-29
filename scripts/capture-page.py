@@ -19,7 +19,15 @@ with sync_playwright() as playwright:
     context = browser.new_context(viewport={"width": 1920, "height": 1080})
     page = context.new_page()
     page.goto(url, wait_until="networkidle")
-    page.locator("#narrationToggle").uncheck()
+    # The native checkbox is visually replaced by the switch control, so a
+    # pointer-based Playwright action cannot interact with it. Update the
+    # control through the DOM and emit the same event as a user interaction.
+    page.locator("#narrationToggle").evaluate(
+        """toggle => {
+            toggle.checked = false;
+            toggle.dispatchEvent(new Event('change', { bubbles: true }));
+        }"""
+    )
     page.locator("#startCard").click()
     page.wait_for_timeout(duration_ms + 750)
     browser.close()
