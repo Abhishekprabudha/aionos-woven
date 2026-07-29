@@ -4,7 +4,9 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 WORK="${RUNNER_TEMP:-/tmp}/aionos-narration"
 VOICE="${NARRATION_VOICE:-en-US-MarkNeural}"
+OUTPUT="${1:-$ROOT/exports/narration.wav}"
 mkdir -p "$WORK"
+mkdir -p "$(dirname "$OUTPUT")"
 rm -f "$WORK"/*
 
 scene_count="$(jq '.scenes | length' "$ROOT/data/story.json")"
@@ -25,5 +27,5 @@ done
 list="$WORK/concat.txt"
 : > "$list"
 for wav in "$WORK"/scene-*.wav; do printf "file '%s'\n" "$wav" >> "$list"; done
-ffmpeg -hide_banner -loglevel error -y -f concat -safe 0 -i "$list" -c:a pcm_s16le "$WORK/narration.wav"
-echo "$WORK/narration.wav"
+ffmpeg -hide_banner -loglevel error -y -f concat -safe 0 -i "$list" -c:a pcm_s16le "$OUTPUT"
+printf '%s\n' "$OUTPUT"

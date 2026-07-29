@@ -35,8 +35,11 @@ jobs:
           python -m playwright install --with-deps chromium
 
       - name: Build US English Mark narration
-        id: narration
-        run: echo "file=$(scripts/render-narration.sh)" >> "$GITHUB_OUTPUT"
+        run: |
+          scripts/render-narration.sh exports/narration.wav
+          test -s exports/narration.wav
+          ffprobe -v error -select_streams a:0 \
+            -show_entries stream=codec_name -of default=nw=1 exports/narration.wav
 
       - name: Start the web app
         run: |
@@ -65,7 +68,7 @@ jobs:
       - name: Mix narration and create MP4
         run: |
           ffmpeg -hide_banner -loglevel warning -y \
-            -i exports/page-silent.mp4 -i "${{ steps.narration.outputs.file }}" \
+            -i exports/page-silent.mp4 -i exports/narration.wav \
             -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 192k -shortest \
             -movflags +faststart exports/AIONOS_Woven_narrated.mp4
 
