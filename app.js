@@ -6,8 +6,7 @@
     timeline: document.getElementById('timeline'), elapsed: document.getElementById('elapsed'),
     remaining: document.getElementById('remaining'), chapter: document.getElementById('sceneChapter'),
     title: document.getElementById('sceneTitle'), kicker: document.getElementById('sceneKicker'),
-    caption: document.getElementById('captionText'), rail: document.getElementById('outcomeRail'),
-    grid: document.getElementById('agentGrid'), counter: document.getElementById('sceneCounter'),
+    caption: document.getElementById('captionText'), counter: document.getElementById('sceneCounter'),
     chapterLabel: document.getElementById('chapterLabel'), browser: document.getElementById('chapterBrowser'),
     narrationToggle: document.getElementById('narrationToggle'), captionToggle: document.getElementById('captionToggle'),
     voice: document.getElementById('voiceSelect'), fullscreen: document.getElementById('fullscreenBtn'),
@@ -17,8 +16,6 @@
 
   let story, scenes, index = 0, playing = false, sceneStart = 0, sceneTimer = null;
   let elapsedBeforeScene = 0, voices = [], chosenVoice = null;
-  const allAgents = ['HR Ground Ops','Last Mile','NX Hero','Procurement','UniFleet','Warehouse Vision','Dashcam Intelligence','Journey Agent','Signal Agent','Annotation','Policy Engine','No-code Flow'];
-
   const pad = n => String(n).padStart(2,'0');
   const fmt = s => `${pad(Math.floor(s/60))}:${pad(Math.floor(s%60))}`;
   const durationTo = i => scenes.slice(0,i).reduce((a,s)=>a+s.duration,0);
@@ -54,8 +51,6 @@
     ui.chapter.textContent = s.chapter; ui.chapterLabel.textContent = s.chapter;
     ui.title.textContent = s.title; ui.kicker.textContent = s.kicker; ui.caption.textContent = s.narration;
     ui.counter.textContent = `${pad(index+1)} / ${pad(scenes.length)}`;
-    ui.rail.innerHTML = s.outcomes.map(o=>`<span class="outcome-pill">${o}</span>`).join('');
-    ui.grid.innerHTML = allAgents.slice(0,8).map(a=>`<div class="agent-chip ${s.activeAgents.some(x=>x.toLowerCase().includes(a.split(' ')[0].toLowerCase())) || s.activeAgents.includes('All agents') ? 'active':''}">${a}</div>`).join('');
     document.querySelectorAll('.chapter-button').forEach((b,n)=>b.classList.toggle('active',n===index));
     if(s.video){
       ui.cover.style.opacity = '0'; ui.video.style.opacity = '1';
